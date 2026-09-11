@@ -49,11 +49,6 @@ h2.title{font-size:clamp(2rem,5.5vw,3.1rem);text-align:center;color:var(--ink);m
 .player-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(200,140,80,.18)}
 .video-wrap{position:relative;aspect-ratio:16/9;background:#1d120c}
 .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.play-row{display:flex;align-items:center;gap:.8rem;justify-content:center;padding:1.1rem 1rem .4rem}
-.play-btn{cursor:pointer;border:0;background:linear-gradient(135deg,var(--sunset),var(--rose));color:#fff;font-family:'Noto Serif SC',serif;font-size:1rem;padding:.7rem 2.2rem;border-radius:999px;box-shadow:0 6px 18px rgba(214,110,80,.35);transition:transform .15s ease, box-shadow .15s ease}
-.play-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(214,110,80,.45)}
-.play-btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-.play-hint{font-size:.8rem;color:var(--ink-soft)}
 
 /* ---------- letter ---------- */
 #letter{background:linear-gradient(180deg,var(--paper),#fbeedd 55%,var(--paper));padding-left:1.2rem;padding-right:1.2rem}
@@ -121,10 +116,6 @@ footer{text-align:center;padding:2.2rem 1rem;color:var(--ink-soft);font-size:.78
     <div class="video-wrap" id="videoWrap">
       <div id="ytFrame"></div>
     </div>
-    <div class="play-row">
-      <button class="play-btn" id="playBtn" aria-label="播放有你的家 MV">▶ 播放</button>
-      <span class="play-hint" id="playHint">播放后，点开视频即可观看（内含字幕）</span>
-    </div>
       </div>
 </section>
 
@@ -134,18 +125,14 @@ footer{text-align:center;padding:2.2rem 1rem;color:var(--ink-soft);font-size:.78
   <h2 class="title display">今年，我想对你说的</h2>
   <p class="title-note">生日快乐。除了这首歌，还有一封每年都会写的信。</p>
   <div class="letter-card reveal">
-    <p class="letter-salut display">My Dearest Darling,</p>
-    <p>I want to take a moment to express my deepest gratitude and love for you. This year has been a challenging year for us handling two kids, and yet you have handled everything with such grace, strength, and love. Thank you for giving birth to our beautiful second daughter. She is so cute, healthy and strong. It is such a God-given blessing that we manage to have two kids just as how we envisioned before our marriage.</p>
-    <p>I also want to thank you for covering so many of the parenting duties when my left arm was injured. You helped me to bath and take care of our kids even when things felt overwhelming. Your love for our girls shines through in everything you do, and I am beyond grateful for you.</p>
-    <p>Thank you for making such a wise decision in hiring our 2nd helper. She has been such a help, allowing us both to focus on work and on each other without being overwhelmed by daily tasks. Your tremendous effort for helper hunt has paid off and your thoughtfulness has ensured that our family is well supported.</p>
-    <p>Through it all, I see God blessing our lives. I'm so thankful for His blessings over us, and for His love and grace that carry us through this season of life.</p>
-    <p>Chee Ling, I want to reaffirm my commitment that I will always love you and cherish you. We've already been together for 7 years (including dating years) and I look forward to growing old with you by my side. No matter what comes our way, we will face it together, with love and faith.</p>
-    <div class="verse">
-      “He will tend His flock like a shepherd; He will gather the lambs in His arms; He will carry them in His bosom, and gently lead those that are with young.”
-      <span class="ref">— Isaiah 40:11</span>
-    </div>
-    <p class="sig">From, Eng Yao</p>
-  </div>
+    <p class="letter-salut display">Happy birthday to my beloved wife!!!</p>
+    <p>I want to take this opportunity to thank you for everything you have done for our family and for loving me all these years. This year has not been easy for us as we continue to handle Esther and Lydia, but you have continued to care for them with so much patience, strength, and love.</p>
+    <p>This is our 7 years together, and I can truly say that I am deeper in love with you and cherish you more as each year passes. From dating, getting married, buying our home, going through pregnancy, and becoming parents to Esther and Lydia, we have already gone through many different seasons of life together. You are still the lovely, strong, thoughtful, and wonderful lady that I fell in love with. In fact, I love you even more now because I have seen more of who you are and how much love you give to our family.</p>
+    <p>I thank God for all the blessings in our life. I am thankful for our two beautiful daughters, our financial provision, our jobs, our home, our two helpers, and all the support that God has given us. Most importantly, I thank God for giving me you. You are the greatest blessing in my life, and I do not want to take you for granted. When I look at our family, I know that we have received much more than what we could have planned or imagined before our marriage.</p>
+    <p>Bringing up children is a lifetime journey. There will be happy moments, tiring moments, difficult moments, and moments where we do not know what to do. But I am happy that I get to go through this journey with you. We are not perfect parents, but we can continue to learn, pray, and support each other. I also promise you that I will be more involved in disciplining our daughters. I know that this should not be something that you need to handle alone. I will try to be more consistent, patient, and actively involved so that we can guide Esther and Lydia together.</p>
+    <p>Darling, thank you for being my wife, my partner, and the mother of our children. Even though life is busy and we are often tired, I still want us to continue making time for each other, exercising together, praying together, and enjoying our life as husband and wife. Let us continue to grow old together and become more in love with each other as the years go by.</p>
+    <p>I love you very much, darling. Happy birthday once again. May God continue to bless you with good health, joy, strength, and peace. You are very precious to me, and I will continue to love, cherish, and take care of you for the rest of my life.</p>
+    <p class="sig">From: Eng Yao</p>
 </section>
 
 <!-- ================= GALLERY ================= -->
@@ -205,7 +192,7 @@ document.querySelectorAll('.g-item,.reveal').forEach(function(el){obs.observe(el
 })();
 
 // ---------- YouTube iframe API ----------
-var player, playBtn = document.getElementById('playBtn'), hint = document.getElementById('playHint');
+var player;
 var VIDEO_ID = '_ukDVmi4F7c';
 var tag = document.createElement('script');
 tag.src = 'https://www.youtube.com/iframe_api';
@@ -217,25 +204,9 @@ window.onYouTubeIframeAPIReady = function(){
     events: {'onStateChange': onPlayerState}
   });
 };
-var syncTimer = null, activeIdx = -1;
-function onPlayerState(e){
-  if (e.data === YT.PlayerState.PLAYING){
-    playBtn.textContent = '❚❚ 暂停';
-    hint.textContent = '';
-  } else if (e.data === YT.PlayerState.PAUSED){
-    playBtn.textContent = '▶ 继续';
-    hint.textContent = '已暂停';
-  } else if (e.data === YT.PlayerState.ENDED){
-    playBtn.textContent = '▶ 再听一次';
-    hint.textContent = '想再听一遍吗？随时都在这里。';
-  }
-}
-playBtn.addEventListener('click', function(){
-  if(!player) return;
-  var st = player.getPlayerState();
-  if (st === YT.PlayerState.PLAYING){ player.pauseVideo(); }
-  else { player.playVideo(); }
-});
+
+function onPlayerState(e){}
+
 </script>
 </body>
 </html>
