@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>有你就是家 · Chee Ling's Birthday</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&family=Cormorant+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sunset:#f9b16e; --sunset-deep:#e08b4f; --rose:#d76a5d; --rose-deep:#a84a42;
+  --ink:#46332b; --ink-soft:#7d655a; --paper:#fdf6ec; --card:rgba(255,252,246,.94);
+  --gold:#c99b3f;
+  --shadow:0 10px 34px rgba(120,70,30,.14);
+  --radius:22px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+body{font-family:'Noto Serif SC',serif;background:var(--paper);color:var(--ink);line-height:1.9;overflow-x:hidden}
+.display{font-family:'Ma Shan Zheng',cursive;font-weight:400}
+.en{font-family:'Cormorant Garamond',serif}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#2c1c14}
+.hero-img{position:absolute;inset:0;background:url('assets/g72.jpg') center 30%/cover no-repeat;animation:heroZoom 26s ease-in-out infinite alternate;transform-origin:50% 40%}
+@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.09)}}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,16,8,.42) 0%,rgba(30,16,8,.12) 40%,rgba(60,32,14,.55) 100%)}
+.hero-inner{position:relative;z-index:2;padding:2rem 1.2rem}
+.hero-eyebrow{display:inline-block;font-size:.78rem;letter-spacing:.55em;text-indent:.55em;color:#ffe3c2;border:1px solid rgba(255,227,194,.45);border-radius:999px;padding:.45rem 1.3rem .45rem 1.5rem;margin-bottom:1.6rem;background:rgba(60,30,10,.25);backdrop-filter:blur(4px)}
+.hero h1{font-size:clamp(3.4rem,12vw,7.5rem);color:#fff6ea;text-shadow:0 6px 40px rgba(0,0,0,.45);line-height:1.15;margin-bottom:.8rem}
+.hero .en-sub{font-size:clamp(1.05rem,2.6vw,1.5rem);color:#ffdcae;letter-spacing:.14em;margin-bottom:1.2rem}
+.hero-lede{max-width:34em;margin:0 auto;color:rgba(255,244,228,.92);font-size:clamp(.95rem,2vw,1.12rem)}
+.scroll-cue{position:absolute;bottom:1.6rem;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,236,214,.75);font-size:.8rem;letter-spacing:.25em;animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+
+/* ---------- sections ---------- */
+section{padding:5.5rem 1.4rem;max-width:1060px;margin:0 auto}
+.eyebrow{display:block;text-align:center;font-size:.74rem;letter-spacing:.5em;text-indent:.5em;color:var(--rose-deep);margin-bottom:.6rem}
+h2.title{font-size:clamp(2rem,5.5vw,3.1rem);text-align:center;color:var(--ink);margin-bottom:1rem}
+.title-note{text-align:center;color:var(--ink-soft);font-size:.95rem;max-width:36em;margin:0 auto 3rem}
+
+/* ---------- MV / lyrics ---------- */
+#song{padding-top:4rem}
+.player-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(200,140,80,.18)}
+.video-wrap{position:relative;aspect-ratio:16/9;background:#1d120c}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.play-row{display:flex;align-items:center;gap:.8rem;justify-content:center;padding:1.1rem 1rem .4rem}
+.play-btn{cursor:pointer;border:0;background:linear-gradient(135deg,var(--sunset),var(--rose));color:#fff;font-family:'Noto Serif SC',serif;font-size:1rem;padding:.7rem 2.2rem;border-radius:999px;box-shadow:0 6px 18px rgba(214,110,80,.35);transition:transform .15s ease, box-shadow .15s ease}
+.play-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(214,110,80,.45)}
+.play-btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.play-hint{font-size:.8rem;color:var(--ink-soft)}
+.lyrics-box{max-width:760px;margin:.6rem auto 0;padding:1.4rem 1.2rem 1.8rem;max-height:min(56vh,480px);overflow-y:auto;scroll-behavior:smooth;mask-image:linear-gradient(180deg,transparent 0,#000 4%,#000 93%,transparent 100%)}
+.lyrics-box::-webkit-scrollbar{width:5px}
+.lyrics-box::-webkit-scrollbar-thumb{background:rgba(210,140,90,.4);border-radius:3px}
+.lyric-line{display:flex;gap:.9rem;padding:.42rem .6rem;border-radius:10px;font-size:1.02rem;color:var(--ink-soft);opacity:.42;transform:translateY(4px);transition:opacity .5s ease,transform .5s ease,color .3s ease}
+.lyric-line .lt{font-size:.68rem;letter-spacing:.06em;color:var(--sunset-deep);min-width:3.4em;padding-top:.5em;font-variant-numeric:tabular-nums;opacity:.75}
+.lyric-line.active{opacity:1;transform:translateY(0);color:var(--ink);background:linear-gradient(90deg,rgba(249,177,110,.16),transparent 70%)}
+.lyric-line.active .lt{opacity:1}
+.lyric-line.past{opacity:.55;transform:translateY(0)}
+.lyric-line:last-child{margin-bottom:8rem}
+
+/* ---------- letter ---------- */
+#letter{background:linear-gradient(180deg,var(--paper),#fbeedd 55%,var(--paper));padding-left:1.2rem;padding-right:1.2rem}
+.letter-card{max-width:720px;margin:0 auto;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(1.8rem,5vw,3.4rem);position:relative;border:1px solid rgba(200,140,80,.18)}
+.letter-card::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:110px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--sunset),var(--gold),var(--rose))}
+.letter-salut{font-size:1.5rem;color:var(--rose-deep);margin-bottom:1.2rem}
+.letter-card p{margin-bottom:1.1rem;font-size:1.01rem}
+.letter-card p.sig{margin-top:2rem;text-align:right;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:var(--ink-soft)}
+.verse{margin:1.6rem 0 0;padding:1.1rem 1.3rem;background:rgba(249,177,110,.1);border-left:3px solid var(--gold);border-radius:0 14px 14px 0;font-size:.97rem}
+.verse .ref{display:block;margin-top:.4rem;font-size:.78rem;letter-spacing:.14em;color:var(--gold);font-style:italic}
+
+/* ---------- gallery ---------- */
+.g-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1rem}
+.g-item{position:relative;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);background:#f3e4d2;opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;grid-column:span 6}
+.g-item.revealed{opacity:1;transform:translateY(0)}
+.g-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.g-item:hover img{transform:scale(1.05)}
+.g-item figcaption{position:absolute;inset:auto 0 0 0;padding:2.2rem 1rem .85rem;color:#fff;font-size:.88rem;background:linear-gradient(transparent,rgba(40,20,8,.65));opacity:0;transition:opacity .3s ease}
+.g-item:hover figcaption{opacity:1}
+.g-item:nth-child(8n+1),.g-item:nth-child(8n+6){grid-column:span 7}
+.g-item:nth-child(8n+2),.g-item:nth-child(8n+5){grid-column:span 5}
+@media(max-width:640px){.g-item,.g-item:nth-child(8n+1),.g-item:nth-child(8n+2),.g-item:nth-child(8n+5),.g-item:nth-child(8n+6){grid-column:span 12}}
+
+/* ---------- closing ---------- */
+#closing{max-width:none;text-align:center;padding:7rem 1.4rem;background:linear-gradient(160deg,#3c2416 0%,#6e3f22 45%,#b96a3a 78%,#f2a765 100%);color:#fff4e6;position:relative;overflow:hidden}
+#closing .display{font-size:clamp(2.6rem,8vw,4.6rem);margin-bottom:1rem;text-shadow:0 4px 30px rgba(0,0,0,.35)}
+#closing p{max-width:34em;margin:0 auto 1rem;opacity:.94}
+#closing .tag{font-size:clamp(1.4rem,4vw,2rem);color:#ffe0b8;margin-top:1.6rem}
+#closing .fromline{margin-top:2.6rem;font-family:'Cormorant Garamond',serif;font-style:italic;letter-spacing:.1em;color:#ffdcae}
+.embers{position:fixed;inset:0;pointer-events:none;z-index:1}
+
+/* ---------- floating nav ---------- */
+.fnav{position:fixed;right:1.1rem;bottom:1.1rem;z-index:50;display:flex;flex-direction:column;gap:.55rem}
+.fnav a{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(70,51,43,.82);color:#ffe8cf;text-decoration:none;font-size:1.05rem;box-shadow:0 4px 14px rgba(60,30,10,.3);backdrop-filter:blur(6px);transition:transform .15s ease,background .15s ease}
+.fnav a:hover{transform:translateY(-3px);background:var(--rose)}
+.fnav a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.fnav .mini{width:auto;height:auto;border-radius:999px;padding:.55rem .9rem;font-size:.8rem;font-family:'Noto Serif SC',serif}
+@media(max-width:640px){.fnav a{width:40px;height:40px}}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+footer{text-align:center;padding:2.2rem 1rem;color:var(--ink-soft);font-size:.78rem;letter-spacing:.12em}
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="hero-img" role="img" aria-label="一家四口迎着夕阳走进花园"></div>
+  <div class="hero-inner">
+    <span class="hero-eyebrow">HAPPY BIRTHDAY · 生日快乐</span>
+    <h1 class="display">有你就是家</h1>
+    <div class="en-sub en">With You, It Is Home</div>
+    <p class="hero-lede">七年，从两个人的梦，走到四个人的家。<br>亲爱的 Chee Ling，这是属于你的一天。</p>
+  </div>
+  <div class="scroll-cue">往下 · SCROLL</div>
+</header>
+
+<!-- ================= MV + LYRICS ================= -->
+<section id="song">
+  <span class="eyebrow">我们的歌 · OUR SONG</span>
+  <h2 class="title display">看着它，唱给你听</h2>
+  <p class="title-note">这一支 MV 的每一幕，都是我们这一年的样子。点开它，让歌词跟着唱到心里。</p>
+  <div class="player-card reveal">
+    <div class="video-wrap" id="videoWrap">
+      <div id="ytFrame"></div>
+    </div>
+    <div class="play-row">
+      <button class="play-btn" id="playBtn" aria-label="播放有你的家 MV">▶ 播放</button>
+      <span class="play-hint" id="playHint">播放后，歌词会跟着MV一起走</span>
+    </div>
+    <div class="lyrics-box" id="lyricsBox" aria-label="歌词同步显示"></div>
+  </div>
+</section>
+
+<!-- ================= LETTER ================= -->
+<section id="letter">
+  <span class="eyebrow">给你的信 · THE LETTER</span>
+  <h2 class="title display">今年，我想对你说的</h2>
+  <p class="title-note">生日快乐。除了这首歌，还有一封每年都会写的信。</p>
+  <div class="letter-card reveal">
+    <p class="letter-salut display">My Dearest Darling,</p>
+    <p>I want to take a moment to express my deepest gratitude and love for you. This year has been a challenging year for us handling two kids, and yet you have handled everything with such grace, strength, and love. Thank you for giving birth to our beautiful second daughter. She is so cute, healthy and strong. It is such a God-given blessing that we manage to have two kids just as how we envisioned before our marriage.</p>
+    <p>I also want to thank you for covering so many of the parenting duties when my left arm was injured. You helped me to bath and take care of our kids even when things felt overwhelming. Your love for our girls shines through in everything you do, and I am beyond grateful for you.</p>
+    <p>Thank you for making such a wise decision in hiring our 2nd helper. She has been such a help, allowing us both to focus on work and on each other without being overwhelmed by daily tasks. Your tremendous effort for helper hunt has paid off and your thoughtfulness has ensured that our family is well supported.</p>
+    <p>Through it all, I see God blessing our lives. I'm so thankful for His blessings over us, and for His love and grace that carry us through this season of life.</p>
+    <p>Chee Ling, I want to reaffirm my commitment that I will always love you and cherish you. We've already been together for 7 years (including dating years) and I look forward to growing old with you by my side. No matter what comes our way, we will face it together, with love and faith.</p>
+    <div class="verse">
+      “He will tend His flock like a shepherd; He will gather the lambs in His arms; He will carry them in His bosom, and gently lead those that are with young.”
+      <span class="ref">— Isaiah 40:11</span>
+    </div>
+    <p class="sig">From, Eng Yao</p>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery">
+  <span class="eyebrow">时光画廊 · MOMENTS</span>
+  <h2 class="title display">时光里的我们</h2>
+  <p class="title-note">十幅画，十个片段——从喂妹妹的深夜，到雨里共撑的伞，再到夕阳下的一家四口。</p>
+  <div class="g-grid" id="gGrid"></div>
+</section>
+
+<!-- ================= CLOSING ================= -->
+<section id="closing">
+  <h2 class="display">亲爱的，生日快乐。</h2>
+  <p>谢谢你成为我的妻子，成为两个孩子的妈妈，也谢谢你，一直是最真实的你自己。</p>
+  <p>我爱你，比七年前更深，比昨天更多，往后的每一天，我都会继续爱你。</p>
+  <div class="tag display">有你的地方，就是家。</div>
+  <div class="fromline">With all my love — Eng Yao &amp; the girls</div>
+</section>
+
+<footer>MADE WITH LOVE · FOR CHEE LING · <span class="en">2026</span></footer>
+
+<nav class="fnav" aria-label="页面导航">
+  <a class="mini" href="#top" aria-label="回到顶部">↑</a>
+  <a class="mini" href="#song" aria-label="跳到MV">♪ 歌</a>
+  <a class="mini" href="#letter" aria-label="跳到信">✉ 信</a>
+  <a class="mini" href="#gallery" aria-label="跳到画廊">❀ 画</a>
+</nav>
+
+<script src="data.js"></script>
+<script>
+// ---------- gallery render ----------
+(function(){
+  var caps = {
+    1:"一切的开始 · 温馨的客厅", 6:"黄昏里的一家四口", 9:"风雨里，我们共撑的伞",
+    13:"哄睡的背影 · 我心疼也牵挂", 27:"一口一口，喂养奕萱的夜晚", 41:"厨房里的笑声与烟火",
+    57:"感谢上天，把你写进我的故事里", 66:"答应你，我会走得更靠近你身旁",
+    72:"迎着夕阳，走向明亮开阔", 84:"往后的每一天，我都会继续爱你"
+  };
+  var grid = document.getElementById('gGrid');
+  GALLERY.forEach(function(g){
+    var f = document.createElement('figure');
+    f.className = 'g-item';
+    f.innerHTML = '<img src="'+g.file+'" alt="'+(caps[g.cue]||'家庭插画')+'" loading="lazy">' +
+                  '<figcaption>'+ (caps[g.cue]||'我们的一家') +'</figcaption>';
+    grid.appendChild(f);
+  });
+})();
+
+// ---------- reveal on scroll ----------
+var obs = new IntersectionObserver(function(es){
+  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('revealed'); obs.unobserve(e.target); } });
+},{threshold:.15});
+document.querySelectorAll('.g-item,.reveal').forEach(function(el){obs.observe(el)});
+
+// ---------- floating nav hide on hero ----------
+(function(){
+  var nav = document.querySelector('.fnav');
+  var hero = document.querySelector('.hero');
+  var io = new IntersectionObserver(function(es){es.forEach(function(e){nav.style.opacity = e.isIntersecting ? '0' : '1';nav.style.pointerEvents = e.isIntersecting ? 'none' : 'auto';});},{threshold:.5});
+  io.observe(hero);
+  nav.style.transition='opacity .3s ease';
+})();
+
+// ---------- lyrics build ----------
+var box = document.getElementById('lyricsBox');
+CUES.forEach(function(c){
+  var d = document.createElement('div');
+  d.className = 'lyric-line';
+  d.innerHTML = '<span class="lt">'+fmt(c.s)+'</span><span class="lx">'+c.t+'</span>';
+  box.appendChild(d);
+});
+function fmt(s){var m=Math.floor(s/60),ss=Math.floor(s%60);return m+':'+String(ss).padStart(2,'0');}
+var lines = Array.prototype.slice.call(box.children);
+
+// ---------- YouTube iframe API ----------
+var player, playBtn = document.getElementById('playBtn'), hint = document.getElementById('playHint');
+var VIDEO_ID = '_ukDVmi4F7c';
+var tag = document.createElement('script');
+tag.src = 'https://www.youtube.com/iframe_api';
+document.head.appendChild(tag);
+window.onYouTubeIframeAPIReady = function(){
+  player = new YT.Player('ytFrame', {
+    videoId: VIDEO_ID,
+    playerVars: {'rel':0,'playsinline':1,'modestbranding':1},
+    events: {'onStateChange': onPlayerState}
+  });
+};
+var syncTimer = null, activeIdx = -1;
+function onPlayerState(e){
+  if (e.data === YT.PlayerState.PLAYING){
+    playBtn.textContent = '❚❚ 暂停';
+    hint.textContent = '歌词正跟着MV走…';
+    if(!syncTimer) syncTimer = setInterval(syncLyrics, 250);
+  } else if (e.data === YT.PlayerState.PAUSED){
+    playBtn.textContent = '▶ 继续';
+    hint.textContent = '已暂停 — 点“继续”接着看';
+  } else if (e.data === YT.PlayerState.ENDED){
+    playBtn.textContent = '▶ 再听一次';
+    hint.textContent = '想再听一遍吗？随时都在这里。';
+  }
+}
+playBtn.addEventListener('click', function(){
+  if(!player) return;
+  var st = player.getPlayerState();
+  if (st === YT.PlayerState.PLAYING){ player.pauseVideo(); }
+  else { player.playVideo(); }
+});
+function syncLyrics(){
+  var t = player.getCurrentTime();
+  var idx = -1;
+  for (var i=0;i<CUES.length;i++){ if (t >= CUES[i].s && t < CUES[i].e){ idx = i; break; } }
+  if (idx === activeIdx) return;
+  activeIdx = idx;
+  lines.forEach(function(el,i){
+    el.classList.toggle('active', i===idx);
+    el.classList.toggle('past', i<idx);
+  });
+  if (idx >= 0){
+    var el = lines[idx];
+    box.scrollTo({top: el.offsetTop - box.clientHeight*0.35, behavior:'smooth'});
+  }
+}
+</script>
+</body>
+</html>
