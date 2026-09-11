@@ -44,7 +44,7 @@ section{padding:5.5rem 1.4rem;max-width:1060px;margin:0 auto}
 h2.title{font-size:clamp(2rem,5.5vw,3.1rem);text-align:center;color:var(--ink);margin-bottom:1rem}
 .title-note{text-align:center;color:var(--ink-soft);font-size:.95rem;max-width:36em;margin:0 auto 3rem}
 
-/* ---------- MV / lyrics ---------- */
+/* ---------- MV ---------- */
 #song{padding-top:4rem}
 .player-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(200,140,80,.18)}
 .video-wrap{position:relative;aspect-ratio:16/9;background:#1d120c}
@@ -54,15 +54,6 @@ h2.title{font-size:clamp(2rem,5.5vw,3.1rem);text-align:center;color:var(--ink);m
 .play-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(214,110,80,.45)}
 .play-btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .play-hint{font-size:.8rem;color:var(--ink-soft)}
-.lyrics-box{max-width:760px;margin:.6rem auto 0;padding:1.4rem 1.2rem 1.8rem;max-height:min(56vh,480px);overflow-y:auto;scroll-behavior:smooth;mask-image:linear-gradient(180deg,transparent 0,#000 4%,#000 93%,transparent 100%)}
-.lyrics-box::-webkit-scrollbar{width:5px}
-.lyrics-box::-webkit-scrollbar-thumb{background:rgba(210,140,90,.4);border-radius:3px}
-.lyric-line{display:flex;gap:.9rem;padding:.42rem .6rem;border-radius:10px;font-size:1.02rem;color:var(--ink-soft);opacity:.42;transform:translateY(4px);transition:opacity .5s ease,transform .5s ease,color .3s ease}
-.lyric-line .lt{font-size:.68rem;letter-spacing:.06em;color:var(--sunset-deep);min-width:3.4em;padding-top:.5em;font-variant-numeric:tabular-nums;opacity:.75}
-.lyric-line.active{opacity:1;transform:translateY(0);color:var(--ink);background:linear-gradient(90deg,rgba(249,177,110,.16),transparent 70%)}
-.lyric-line.active .lt{opacity:1}
-.lyric-line.past{opacity:.55;transform:translateY(0)}
-.lyric-line:last-child{margin-bottom:8rem}
 
 /* ---------- letter ---------- */
 #letter{background:linear-gradient(180deg,var(--paper),#fbeedd 55%,var(--paper));padding-left:1.2rem;padding-right:1.2rem}
@@ -116,12 +107,12 @@ footer{text-align:center;padding:2.2rem 1rem;color:var(--ink-soft);font-size:.78
     <span class="hero-eyebrow">HAPPY BIRTHDAY · 生日快乐</span>
     <h1 class="display">有你就是家</h1>
     <div class="en-sub en">With You, It Is Home</div>
-    <p class="hero-lede">七年，从两个人的梦，走到四个人的家。<br>亲爱的 Chee Ling，这是属于你的一天。</p>
+    <p class="hero-lede">七年，从两个人的梦，走到四个人的家。<br>亲爱的智玲，这是属于你的一天。</p>
   </div>
   <div class="scroll-cue">往下 · SCROLL</div>
 </header>
 
-<!-- ================= MV + LYRICS ================= -->
+<!-- ================= MV ================= -->
 <section id="song">
   <span class="eyebrow">我们的歌 · OUR SONG</span>
   <h2 class="title display">看着它，唱给你听</h2>
@@ -132,10 +123,9 @@ footer{text-align:center;padding:2.2rem 1rem;color:var(--ink-soft);font-size:.78
     </div>
     <div class="play-row">
       <button class="play-btn" id="playBtn" aria-label="播放有你的家 MV">▶ 播放</button>
-      <span class="play-hint" id="playHint">播放后，歌词会跟着MV一起走</span>
+      <span class="play-hint" id="playHint">播放后，点开视频即可观看（内含字幕）</span>
     </div>
-    <div class="lyrics-box" id="lyricsBox" aria-label="歌词同步显示"></div>
-  </div>
+      </div>
 </section>
 
 <!-- ================= LETTER ================= -->
@@ -162,7 +152,7 @@ footer{text-align:center;padding:2.2rem 1rem;color:var(--ink-soft);font-size:.78
 <section id="gallery">
   <span class="eyebrow">时光画廊 · MOMENTS</span>
   <h2 class="title display">时光里的我们</h2>
-  <p class="title-note">十幅画，十个片段——从喂妹妹的深夜，到雨里共撑的伞，再到夕阳下的一家四口。</p>
+  <p class="title-note">十张真实的照片，真实的我们——从两个人的约会，到四个人的家。</p>
   <div class="g-grid" id="gGrid"></div>
 </section>
 
@@ -184,22 +174,17 @@ footer{text-align:center;padding:2.2rem 1rem;color:var(--ink-soft);font-size:.78
   <a class="mini" href="#gallery" aria-label="跳到画廊">❀ 画</a>
 </nav>
 
-<script src="data.js"></script>
+<script src="real_photos.js"></script>
 <script>
 // ---------- gallery render ----------
 (function(){
-  var caps = {
-    1:"一切的开始 · 温馨的客厅", 6:"黄昏里的一家四口", 9:"风雨里，我们共撑的伞",
-    13:"哄睡的背影 · 我心疼也牵挂", 27:"一口一口，喂养奕萱的夜晚", 41:"厨房里的笑声与烟火",
-    57:"感谢上天，把你写进我的故事里", 66:"答应你，我会走得更靠近你身旁",
-    72:"迎着夕阳，走向明亮开阔", 84:"往后的每一天，我都会继续爱你"
-  };
+  var caps = null;
   var grid = document.getElementById('gGrid');
-  GALLERY.forEach(function(g){
+  REAL.forEach(function(g){
     var f = document.createElement('figure');
     f.className = 'g-item';
-    f.innerHTML = '<img src="'+g.file+'" alt="'+(caps[g.cue]||'家庭插画')+'" loading="lazy">' +
-                  '<figcaption>'+ (caps[g.cue]||'我们的一家') +'</figcaption>';
+    f.innerHTML = '<img src="'+g.file+'" alt="'+g.caption+'" loading="lazy">' +
+                  '<figcaption>'+ g.caption +'</figcaption>';
     grid.appendChild(f);
   });
 })();
@@ -219,17 +204,6 @@ document.querySelectorAll('.g-item,.reveal').forEach(function(el){obs.observe(el
   nav.style.transition='opacity .3s ease';
 })();
 
-// ---------- lyrics build ----------
-var box = document.getElementById('lyricsBox');
-CUES.forEach(function(c){
-  var d = document.createElement('div');
-  d.className = 'lyric-line';
-  d.innerHTML = '<span class="lt">'+fmt(c.s)+'</span><span class="lx">'+c.t+'</span>';
-  box.appendChild(d);
-});
-function fmt(s){var m=Math.floor(s/60),ss=Math.floor(s%60);return m+':'+String(ss).padStart(2,'0');}
-var lines = Array.prototype.slice.call(box.children);
-
 // ---------- YouTube iframe API ----------
 var player, playBtn = document.getElementById('playBtn'), hint = document.getElementById('playHint');
 var VIDEO_ID = '_ukDVmi4F7c';
@@ -247,11 +221,10 @@ var syncTimer = null, activeIdx = -1;
 function onPlayerState(e){
   if (e.data === YT.PlayerState.PLAYING){
     playBtn.textContent = '❚❚ 暂停';
-    hint.textContent = '歌词正跟着MV走…';
-    if(!syncTimer) syncTimer = setInterval(syncLyrics, 250);
+    hint.textContent = '';
   } else if (e.data === YT.PlayerState.PAUSED){
     playBtn.textContent = '▶ 继续';
-    hint.textContent = '已暂停 — 点“继续”接着看';
+    hint.textContent = '已暂停';
   } else if (e.data === YT.PlayerState.ENDED){
     playBtn.textContent = '▶ 再听一次';
     hint.textContent = '想再听一遍吗？随时都在这里。';
@@ -263,21 +236,6 @@ playBtn.addEventListener('click', function(){
   if (st === YT.PlayerState.PLAYING){ player.pauseVideo(); }
   else { player.playVideo(); }
 });
-function syncLyrics(){
-  var t = player.getCurrentTime();
-  var idx = -1;
-  for (var i=0;i<CUES.length;i++){ if (t >= CUES[i].s && t < CUES[i].e){ idx = i; break; } }
-  if (idx === activeIdx) return;
-  activeIdx = idx;
-  lines.forEach(function(el,i){
-    el.classList.toggle('active', i===idx);
-    el.classList.toggle('past', i<idx);
-  });
-  if (idx >= 0){
-    var el = lines[idx];
-    box.scrollTo({top: el.offsetTop - box.clientHeight*0.35, behavior:'smooth'});
-  }
-}
 </script>
 </body>
 </html>
