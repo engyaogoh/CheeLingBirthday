@@ -157,6 +157,7 @@ footer{text-align:center;padding:2.2rem 1rem;color:var(--ink-soft);font-size:.78
   <div class="mm-grid" id="mmGrid"></div>
   <div class="mm-status" id="mmStatus">已配对 0 / 8 对 · 翻了 0 次</div>
   <button class="mm-reset" id="mmReset" type="button">重新开始</button>
+  <button class="mm-reset" id="mmGiveUp" type="button" style="background:var(--ink-soft)">算了，直接看信 💌</button>
   <div class="mm-banner" id="mmBanner">
     <div class="display" style="font-size:1.9rem;color:var(--ink);margin-bottom:.9rem">🎉 全部配对成功！</div>
     <a class="mm-btn" href="#letter" id="mmUnlock">打开信 💌</a>
@@ -338,6 +339,13 @@ function mmConfetti(){
 
 mmResetGame();
 document.getElementById('mmReset').addEventListener('click', mmResetGame);
+// give-up: unlock the letter without confetti
+document.getElementById('mmGiveUp').addEventListener('click', function(){
+  document.getElementById('letterCard').classList.remove('locked');
+  document.getElementById('letterCard').classList.add('revealed');
+  document.getElementById('letter-card-locked').style.display = 'none';
+  document.getElementById('letter').scrollIntoView({behavior:'smooth'});
+});
 // clicking the unlock button scrolls to the now-visible letter
 document.getElementById('mmUnlock').addEventListener('click', function(e){
   e.preventDefault();
