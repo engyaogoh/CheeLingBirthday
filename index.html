@@ -72,6 +72,36 @@ h2.title{font-size:clamp(2rem,5.5vw,3.1rem);text-align:center;color:var(--ink);m
 .g-item:nth-child(8n+2),.g-item:nth-child(8n+5){grid-column:span 5}
 @media(max-width:640px){.g-item,.g-item:nth-child(8n+1),.g-item:nth-child(8n+2),.g-item:nth-child(8n+5),.g-item:nth-child(8n+6){grid-column:span 12}}
 
+/* ---------- memory game ---------- */
+#game{background:linear-gradient(180deg,var(--paper),#fbeedd 60%,var(--paper))}
+.mm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;max-width:620px;margin:0 auto}
+@media(max-width:560px){.mm-grid{gap:.5rem}}
+.mm-card{aspect-ratio:3/4;perspective:700px;cursor:pointer;background:none;border:0;padding:0}
+.mm-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .45s ease}
+.mm-card.flip .mm-inner{transform:rotateY(180deg)}
+.mm-card.matched{cursor:default}
+.mm-face{position:absolute;inset:0;border-radius:12px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 4px 14px rgba(120,70,30,.16)}
+.mm-back{background:linear-gradient(150deg,var(--sunset) 0%,var(--rose) 100%);display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff6ea;transform:rotateY(0deg)}
+.mm-front{transform:rotateY(180deg)}
+.mm-front img{width:100%;height:100%;object-fit:cover;display:block}
+.mm-card.matched .mm-front{outline:3px solid var(--gold);outline-offset:-3px;border-radius:12px}
+.mm-card.matched{animation:mmPop .4s ease}
+@keyframes mmPop{50%{transform:scale(1.06)}}
+.mm-status{text-align:center;color:var(--ink-soft);font-size:.92rem;margin:1.1rem 0}
+.mm-reset{display:block;margin:.4rem auto 0;background:var(--rose);color:#fff6ea;border:0;border-radius:999px;padding:.5rem 1.4rem;font-family:'Noto Serif SC',serif;font-size:.88rem;cursor:pointer;box-shadow:0 4px 14px rgba(120,70,30,.18)}
+.mm-reset:hover{background:var(--rose-deep)}
+.mm-banner{display:none;text-align:center;margin:1.6rem auto 0}
+.mm-banner.show{display:block}
+.mm-btn{display:inline-block;background:linear-gradient(120deg,var(--sunset-deep),var(--rose-deep));color:#fff6ea;text-decoration:none;border-radius:999px;padding:.85rem 2.2rem;font-size:1.05rem;box-shadow:0 6px 20px rgba(120,70,30,.28);letter-spacing:.08em;animation:mmPulse 1.6s ease-in-out infinite}
+@keyframes mmPulse{50%{transform:scale(1.05)}}
+
+/* ---------- letter locked ---------- */
+#letter-card-locked{max-width:720px;margin:0 auto;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(2rem,6vw,3.4rem);text-align:center;border:1px solid rgba(200,140,80,.18)}
+#letter-card-locked .lock-ico{font-size:2.6rem;margin-bottom:.8rem}
+#letter-card-locked p{color:var(--ink-soft)}
+#letter-card-locked .display{color:var(--ink);margin-bottom:.6rem}
+.letter-card.locked{display:none}
+
 /* ---------- closing ---------- */
 #closing{max-width:none;text-align:center;padding:7rem 1.4rem;background:linear-gradient(160deg,#3c2416 0%,#6e3f22 45%,#b96a3a 78%,#f2a765 100%);color:#fff4e6;position:relative;overflow:hidden}
 #closing .display{font-size:clamp(2.6rem,8vw,4.6rem);margin-bottom:1rem;text-shadow:0 4px 30px rgba(0,0,0,.35)}
@@ -119,12 +149,17 @@ footer{text-align:center;padding:2.2rem 1rem;color:var(--ink-soft);font-size:.78
       </div>
 </section>
 
-<!-- ================= LETTER ================= -->
+<!-- ================= LETTER (unlocks after game) ================= -->
 <section id="letter">
   <span class="eyebrow">给你的信 · THE LETTER</span>
   <h2 class="title display">今年，我想对你说的</h2>
   <p class="title-note">生日快乐。除了这首歌，还有一封每年都会写的信。</p>
-  <div class="letter-card reveal">
+  <div id="letter-card-locked">
+    <div class="lock-ico">✉</div>
+    <div class="display" style="font-size:1.8rem">这封信，藏起来了</div>
+    <p>先把上面的配对游戏完成，<br>信才会打开哦。💛</p>
+  </div>
+  <div class="letter-card reveal locked" id="letterCard">
     <p class="letter-salut">Happy birthday to my beloved wife!!!</p>
     <p>I want to take this opportunity to thank you for everything you have done for our family and for loving me all these years. This year has not been easy for us as we continue to handle Esther and Lydia, but you have continued to care for them with so much patience, strength, and love.</p>
     <p>This is our 7 years together, and I can truly say that I am deeper in love with you and cherish you more as each year passes. From dating, getting married, buying our home, going through pregnancy, and becoming parents to Esther and Lydia, we have already gone through many different seasons of life together. You are still the lovely, strong, thoughtful, and wonderful lady that I fell in love with. In fact, I love you even more now because I have seen more of who you are and how much love you give to our family.</p>
@@ -139,8 +174,22 @@ footer{text-align:center;padding:2.2rem 1rem;color:var(--ink-soft);font-size:.78
 <section id="gallery">
   <span class="eyebrow">时光画廊 · MOMENTS</span>
   <h2 class="title display">时光里的我们</h2>
-  <p class="title-note">十张真实的照片，真实的我们——从两个人的约会，到四个人的家。</p>
+  <p class="title-note">八张真实的照片，真实的我们——从两个人的约会，到四个人的家。</p>
   <div class="g-grid" id="gGrid"></div>
+</section>
+
+<!-- ================= MEMORY GAME ================= -->
+<section id="game">
+  <span class="eyebrow">记忆配对 · MEMORY MATCH</span>
+  <h2 class="title display">翻开我们的小时光</h2>
+  <p class="title-note">每次翻开两张，找出八对一样的照片。全部配对成功，有一份小惊喜等着你。</p>
+  <div class="mm-grid" id="mmGrid"></div>
+  <div class="mm-status" id="mmStatus">已配对 0 / 8 对 · 翻了 0 次</div>
+  <button class="mm-reset" id="mmReset" type="button">重新开始</button>
+  <div class="mm-banner" id="mmBanner">
+    <div class="display" style="font-size:1.9rem;color:var(--ink);margin-bottom:.9rem">🎉 全部配对成功！</div>
+    <a class="mm-btn" href="#letter" id="mmUnlock">打开信 💌</a>
+  </div>
 </section>
 
 <!-- ================= CLOSING ================= -->
@@ -181,7 +230,6 @@ var obs = new IntersectionObserver(function(es){
   es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('revealed'); obs.unobserve(e.target); } });
 },{threshold:.15});
 document.querySelectorAll('.g-item,.reveal').forEach(function(el){obs.observe(el)});
-
 // ---------- floating nav hide on hero ----------
 (function(){
   var nav = document.querySelector('.fnav');
@@ -190,6 +238,111 @@ document.querySelectorAll('.g-item,.reveal').forEach(function(el){obs.observe(el
   io.observe(hero);
   nav.style.transition='opacity .3s ease';
 })();
+
+// ---------- memory match game ----------
+var mmState = {first:null, second:null, lock:false, matched:0, flips:0};
+function mmResetGame(){
+  mmState = {first:null, second:null, lock:false, matched:0, flips:0};
+  var grid = document.getElementById('mmGrid');
+  var banner = document.getElementById('mmBanner');
+  var letterCard = document.getElementById('letterCard');
+  var lockedCard = document.getElementById('letter-card-locked');
+  grid.innerHTML = '';
+  banner.classList.remove('show');
+  letterCard.classList.add('locked');
+  lockedCard.style.display = '';
+  document.getElementById('mmStatus').textContent = '已配对 0 / 8 对 · 翻了 0 次';
+  var tiles = GAME.concat(GAME);
+  for (var i = tiles.length - 1; i > 0; i--) { // ponytail: Fisher-Yates, 16 tiles
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = tiles[i]; tiles[i] = tiles[j]; tiles[j] = t;
+  }
+  tiles.forEach(function(g, idx){
+    var card = document.createElement('button');
+    card.className = 'mm-card';
+    card.type = 'button';
+    card.setAttribute('data-pair', g.file);
+    card.setAttribute('aria-label', '记忆卡片 ' + (idx + 1));
+    card.innerHTML = '<div class="mm-inner">' +
+      '<div class="mm-face mm-back">💛</div>' +
+      '<div class="mm-face mm-front"><img src="' + g.file + '" alt="" loading="lazy"></div>' +
+      '</div>';
+    card.addEventListener('click', function(){ mmFlip(card); });
+    grid.appendChild(card);
+  });
+}
+function mmFlip(card){
+  if (mmState.lock || card.classList.contains('flip')) return;
+  card.classList.add('flip');
+  if (!mmState.first) { mmState.first = card; return; }
+  mmState.second = card;
+  mmState.lock = true;
+  mmState.flips++;
+  var a = mmState.first, b = mmState.second;
+  if (a.getAttribute('data-pair') === b.getAttribute('data-pair')) {
+    setTimeout(function(){
+      a.classList.add('matched'); b.classList.add('matched');
+      mmState.matched++; mmState.first = null; mmState.second = null; mmState.lock = false;
+      mmStatus();
+      if (mmState.matched === GAME.length) mmWin();
+    }, 450);
+  } else {
+    setTimeout(function(){
+      a.classList.remove('flip'); b.classList.remove('flip');
+      mmState.first = null; mmState.second = null; mmState.lock = false;
+      mmStatus();
+    }, 800);
+  }
+}
+function mmStatus(){
+  document.getElementById('mmStatus').textContent = '已配对 ' + mmState.matched + ' / ' + GAME.length + ' 对 · 翻了 ' + mmState.flips + ' 次';
+}
+function mmWin(){
+  mmConfetti();
+  var banner = document.getElementById('mmBanner');
+  banner.classList.add('show');
+  document.getElementById('letterCard').classList.remove('locked');
+  document.getElementById('letterCard').classList.add('revealed');
+  document.getElementById('letter-card-locked').style.display = 'none';
+  // unlock the floating nav letter link
+  var navLetter = document.querySelector('.fnav a[href="#letter"]');
+  if (navLetter) { navLetter.style.opacity = '1'; navLetter.style.pointerEvents = 'auto'; }
+}
+// ponytail: minimal canvas confetti, ~40 lines beats a 30KB lib for one use
+function mmConfetti(){
+  var cv = document.createElement('canvas');
+  cv.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:999';
+  cv.width = window.innerWidth; cv.height = window.innerHeight;
+  document.body.appendChild(cv);
+  var ctx = cv.getContext('2d');
+  var colors = ['#f9b16e','#e08b4f','#d76a5d','#c99b3f','#ffe3c2'];
+  var parts = [];
+  for (var i = 0; i < 140; i++) {
+    parts.push({x: Math.random() * cv.width, y: -20 - Math.random() * cv.height * 0.5,
+      vx: (Math.random() - .5) * 3, vy: 2 + Math.random() * 4,
+      s: 5 + Math.random() * 7, r: Math.random() * Math.PI, vr: (Math.random() - .5) * .25,
+      c: colors[Math.floor(Math.random() * colors.length)]});
+  }
+  var t0 = Date.now();
+  (function tick(){
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    parts.forEach(function(p){
+      p.x += p.vx; p.y += p.vy; p.r += p.vr;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r);
+      ctx.fillStyle = p.c; ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * 0.6); ctx.restore();
+    });
+    if (Date.now() - t0 < 5000) requestAnimationFrame(tick);
+    else cv.remove();
+  })();
+}
+
+mmResetGame();
+document.getElementById('mmReset').addEventListener('click', mmResetGame);
+// clicking the unlock button scrolls to the now-visible letter
+document.getElementById('mmUnlock').addEventListener('click', function(e){
+  e.preventDefault();
+  document.getElementById('letter').scrollIntoView({behavior:'smooth'});
+});
 
 // ---------- YouTube iframe API ----------
 var player;
